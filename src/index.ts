@@ -1,11 +1,15 @@
 import "reflect-metadata";
-import {SomeTypeDeclaration} from "test-package/file-with-declaration";
+import { action, observable } from "mobx";
+import { IKeyValueMap } from "mobx/lib/types/observablemap";
 
-const someDecorator: PropertyDecorator = (target, propertyKey) => {}
+class B {
+	@observable
+	a: IKeyValueMap = {};
 
-class Test {
-	@someDecorator
-	someProperty: SomeTypeDeclaration = 5;
+	@action.bound
+	someFunc() {
+		return 5;
+	}
 }
 
-console.log(new Test().someProperty)
+const b = new B();
